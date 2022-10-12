@@ -1,0 +1,51 @@
+
+B1. Write and test a function with a list<int> argument that will implement the Quick Sort algorithm to sort its
+argument using the first element in the list as a pivot and partitioning the list using two temporary lists – one for
+the elements smaller than the pivot and one for the other elements. Use the stream insertion operator and the skeleton
+for the main function provided in file B1.cpp attached to the email you received.
+[18 points]
+
+B2. Make a non-recursive function that will generate and place in an STL queue all substrings of a given string passed
+as an argument. For example, all substrings of the string “abcd” are “a”, “b”, “c”, “d”, “ab”, “bc”, “cd”, “abc”, “bcd”
+and “abcd”. Please use the following stack-based algorithm:
+
+If the string is empty or has only 1 character, the string itself is the only substring. Place it on an STL queue and return the queue.
+Otherwise, remove its first character and if the string still has more than 1 character, push it on an initially empty stack.
+Continue removing the first character and pushing the remaining string onto the stack until the length of the remaining string becomes 1. For example, if the original string is “abcd”, at this moment the stack will contain “abcd”, ”bcd”,and “cd”,  and the remaining string will be “d”.
+Now place this 1-character string into an STL queue and start adding other substrings to the queue as follows.
+Pop a string from the stack and add to the queue all its substrings that begin with its first character. For the string “cd” these substrings will be “cd” and “c”. For the string “abcd” these will be “abcd”, “abc”, “ab”, and “a”.
+Continue doing so with each string on the stack, until the stack is empty.
+At this moment, the queue will contain all substrings of the original string (ordered according to this algorithm, not as in the example above) and you can return the queue.
+NOTE: Since the queues do not have iterators, if you need to read all elements in a given queue, I suggest you read them from a copy of this queue by repeatedly reading the first element and removing it.
+[18 points]
+
+function quicksort(array)
+    less, equal, greater := three empty arrays
+    if length(array) > 1
+        pivot := select any element of array
+        for each x in array
+            if x < pivot then add x to less
+            if x = pivot then add x to equal
+            if x > pivot then add x to greater
+        quicksort(less)
+        quicksort(greater)
+        array := concatenate(less, equal, greater)
+
+
+variables:
+list<int> pivot,
+list<int> left,
+list<int> right,
+list<int>::iterator ptr set to start of numbers list
+
+1. set the pivot to the ptr, iterate ptr
+
+2. add items to left and right until ptr reaches the end of the numbers list (to do this just compare what ptr is pointing to with the pivot value)
+
+3. reset ptr to start of the numbers list
+
+4. call qsort for left, then add every item of left to the numbers list (iterating thru the list via ptr)
+
+5. add pivot to numbers list, iterate ptr
+
+6. repeat step 4 for right
